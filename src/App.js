@@ -1,10 +1,10 @@
 import './App.css';
-import TransactionsScreen from './components/screens/TransactionsScreen';
+import Transactions from './components/screens/Transactions';
 
 function App() {
   return (
     <div className="App">
-      <TransactionsScreen/>
+      <Transactions/>
     </div>
   );
 }

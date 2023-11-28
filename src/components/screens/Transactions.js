@@ -1,5 +1,5 @@
 import CurrentBalance from '../CurrentBalance.js'
-import IncomeAndExpensesRectangle from '../IncomeAndExpensesRectangle'
+import IncomeAndExpensesRectangle from '../IncomeAndExpensesRectangle.js'
 import TransactionsList from '../TransactionsList.js'
 
 function TransactionsScreen() {
