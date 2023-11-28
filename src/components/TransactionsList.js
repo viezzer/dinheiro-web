@@ -5,17 +5,24 @@ import {useState} from 'react'
 
 const transactionsExample = [
     {
-        id: '1234',
-        category: 'Transação',
+        id: '1234', 
+        category: 'Transação', 
         title: 'Almoço muito gostoso que comi no ju com meu pai que fez churrasco',
-        value: '-23.00',
+        amount: '-23.00',
         date: '29/11/2023',
     },
     {
         id: '12345',
         category: 'Transação',
         title: 'Salário',
-        value: '300.00',
+        amount: '300.00',
+        date: '25/11/2023',
+    },
+    {
+        id: '123456',
+        category: 'Transação',
+        title: 'Salário',
+        amount: '300000.00',
         date: '25/11/2023',
     },
 ]
@@ -23,10 +30,32 @@ const transactionsExample = [
 function TransactionsList() {
     const [transactions, setTransactions] = useState(transactionsExample);
 
-    function fecthTransactions() {
-        setTransactions(transactionsExample)
+    function handleDeleteTransaction(ID) {
+        console.log(ID)
+        setTransactions(
+            transactions.filter(function(transaction){
+                if (transaction.id !== ID) {
+                    return transaction
+                }
+                return false
+        }))
     }
-    // fecthTransactions()
+
+    function addTransactionIntoDOM(transaction) {
+        const operator = transaction.amount < 0 ? "-" : "+"
+        const CSSclass = transaction.amount < 0 ? styles.minus : styles.plus
+        const amountWithoutOperator = Math.abs(transaction.amount).toFixed(2)
+    
+        const amountText = <p>
+            <span className={CSSclass}>{operator} R$ {amountWithoutOperator}</span>
+            <button className={styles.deleteBtn} onClick={() => {handleDeleteTransaction(transaction.id)}}>
+                x
+            </button>
+            </p>
+    
+        return amountText
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -42,20 +71,20 @@ function TransactionsList() {
                 </Dialog.Root>
                 
             </div>
-            {transactions.map((transaction, index) => (
+            {transactions.length > 0 ? (transactions.map((transaction, index) => (
                     <div className={styles.listItemRectangle} key={index}>
                         <div className={styles.titleDiv}>
                             <p className={styles.title}>{transaction.title}</p>
                         </div>
-                        <div className={styles.dateAndValueDiv}>
+                        <div className={styles.dateAndAmountDiv}>
                             <p className={styles.data}>{transaction.date}</p>
-                            <p className={styles.value}>
-                                {transaction.value > 0 ? `+R$ ${transaction.value}` : `-R$ ${transaction.value}` }
-                            </p>
+                            {addTransactionIntoDOM(transaction)}
                         </div>
                         
                     </div>
-                ))
+                ))) : (
+                    <p>Você ainda não possui transações registradas. Registre uma clicando em "Nova Transação"!</p>
+                )
             }
         </div>
 

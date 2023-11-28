@@ -31,7 +31,8 @@ function NewTransactionForm() {
             <h2>Nova transação</h2>
             <form className={styles.form} onSubmit={handleCreateNewTransaction}>
                 <label className={styles.label}>Tipo da transação</label>
-                <div onClick={handleSwitch}>
+                <small>Receita para valor que entrou na sua conta. Despesa para valor que saiu da sua conta. </small>
+                <div className={styles.switchDiv} onClick={handleSwitch}>
                     <Switch/>
                 </div>
                 {/* <label className={styles.label}>Categoria da transação</label>

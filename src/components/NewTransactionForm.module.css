@@ -5,7 +5,7 @@
 }
 
 .label {
-    margin-top:20px;
+    margin-top:10px;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -27,4 +27,8 @@
     padding:10px;
     border: 1px solid var(--cardColor);
     background-color: var(--incomeColor);
+}
+
+.switchDiv{
+    margin-top:10px;
 }
