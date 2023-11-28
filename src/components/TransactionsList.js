@@ -1,35 +1,7 @@
 import styles from './TransactionsList.module.css'
-import * as Dialog from '@radix-ui/react-dialog';
-import NewTransactionForm from './NewTransactionForm';
-import {useState} from 'react'
-import { FaCirclePlus } from "react-icons/fa6";
 
-const transactionsExample = [
-    {
-        id: '1234', 
-        category: 'Transação', 
-        title: 'Almoço muito gostoso que comi no ju com meu pai que fez churrasco',
-        amount: '-23.00',
-        date: '29/11/2023',
-    },
-    {
-        id: '12345',
-        category: 'Transação',
-        title: 'Salário',
-        amount: '300.00',
-        date: '25/11/2023',
-    },
-    {
-        id: '123456',
-        category: 'Transação',
-        title: 'Salário',
-        amount: '300000.00',
-        date: '25/11/2023',
-    },
-]
 
-function TransactionsList() {
-    const [transactions, setTransactions] = useState(transactionsExample);
+function TransactionsList({transactions, setTransactions}) {
 
     function handleDeleteTransaction(ID) {
         const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
@@ -41,6 +13,7 @@ function TransactionsList() {
                     }
                     return false
             }))
+            return true
         }
     }
 
@@ -61,22 +34,7 @@ function TransactionsList() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
-                <p className={styles.headerTitle}>Transações</p>
-                <Dialog.Root>
-                    <Dialog.Trigger className={styles.newTransactionButton}>
-                        <FaCirclePlus/> <p style={{marginLeft: '5px'}}>Nova Transação</p>
-                    </Dialog.Trigger>
-                    <Dialog.Portal>
-                        <Dialog.Overlay className={styles.dialogOverlay}/>
-                        <Dialog.Content className={styles.dialog}>
-                            <NewTransactionForm/>
-                        </Dialog.Content>
-                    </Dialog.Portal>
-                </Dialog.Root>
-                
-            </div>
-            {transactions.length > 0 ? (transactions.map((transaction, index) => (
+            {transactions ? (transactions.map((transaction, index) => (
                     <div className={styles.listItemRectangle} key={index}>
                         <div className={styles.titleDiv}>
                             <p className={styles.title}>{transaction.title}</p>
