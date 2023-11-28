@@ -49,16 +49,21 @@
 
 .listItemRectangle {
     width: 537px;
-    height: 63px;
+    height: 50px;
     background-color: var(--cardColor);
     display:flex;
     flex-direction: row;
     border-radius: 10px;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .titleDiv {
     margin-top:auto;
     margin-bottom:auto;
+    width:70%;
+    display:flex;
+    flex-wrap: wrap;
     /* background-color: antiquewhite; */
 }
 
@@ -81,7 +86,8 @@
     font-weight: 400;
     line-height: normal;
     /* background-color: #11B00E; */
-    width:70%;
+    word-wrap: break-word;
+    flex: 0 0 100%;
 }
 
 .data{
@@ -103,4 +109,29 @@
     font-weight: 700;
     line-height: normal;
     /* min-width: 150px; */
+}
+
+.dialogOverlay {
+    width: 100vw; /* Equivalente a w-screen no Tailwind */
+    height: 100vh; /* Equivalente a h-screen no Tailwind */
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com opacidade 80%, equivalente a bg-black/80 no Tailwind */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+}
+
+.dialog {
+    position: absolute;
+    padding: 2.5rem; /* Equivalente a p-10 no Tailwind */
+    background-color: var(--cardColor); /* Cor correspondente a bg-zinc-900 no Tailwind */
+    border-radius: 1rem; /* Equivalente a rounded-2xl no Tailwind */
+    width: 100%;
+    max-width: 28rem; /* Equivalente a max-w-md no Tailwind */
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
 }
