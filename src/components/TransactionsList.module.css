@@ -1,0 +1,106 @@
+.container {
+    width: 537px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
+    height: 400px;
+}
+
+.header {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: aqua; */
+    height:50px
+}
+
+.headerTitle {
+    color: #000;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: left;
+    /* background-color: beige; */
+}
+
+.newTransactionButton{
+    border-radius: 10px;
+    border: 1px solid var(--incomeColor);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: var(--incomeColor);
+    background-color: transparent;
+    font-weight: 700;
+    transition: background-color 0.2s;
+    
+}
+
+.newTransactionButton:hover {
+    border-color: var(--incomeColor);
+    color: white;
+    background-color: var(--incomeColor);
+    cursor:pointer;
+
+}
+
+.listItemRectangle {
+    width: 537px;
+    height: 63px;
+    background-color: var(--cardColor);
+    display:flex;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.titleDiv {
+    margin-top:auto;
+    margin-bottom:auto;
+    /* background-color: antiquewhite; */
+}
+
+.dateAndValueDiv {
+    /* background-color:aqua; */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
+}
+
+.title {
+    text-align: left;
+    margin-left:20px;
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    /* background-color: #11B00E; */
+    width:70%;
+}
+
+.data{
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    /* background-color: aqua; */
+}
+
+.value {
+    margin-right:10px;
+    color: var(--incomeColor, #11B00E);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    /* min-width: 150px; */
+}
