@@ -5,24 +5,15 @@ import styles from './NewTransactionForm.module.css';
 function NewTransactionForm() {
     const [isIncome, setIsIncome] = useState(true) 
     const [title, setTitle] = useState('')
-    const [value, setValue] = useState('')
+    const [amount, setAmount] = useState('')
     const [date, setDate] = useState('')
     const [titlePlaceholder, setTitlePlaceholder] = useState('Salário, Serviço Prestado, etc...')
 
-    function handleSwitch() {
-        if(isIncome){
-            //muda para despesa
-            setIsIncome(false)
-            setTitlePlaceholder('Almoço, Mercado, etc...')
-        } else {
-            //muda para receita
-            setIsIncome(true)
-            setTitlePlaceholder('Salário, Serviço Prestado, etc...')
-        }
-    }
-
     function handleCreateNewTransaction(e) {
         e.preventDefault()
+        console.log(isIncome)
+        console.log(title)
+        console.log(amount)
         console.log(date)
     }
 
@@ -32,8 +23,11 @@ function NewTransactionForm() {
             <form className={styles.form} onSubmit={handleCreateNewTransaction}>
                 <label className={styles.label}>Tipo da transação</label>
                 <small>Receita para valor que entrou na sua conta. Despesa para valor que saiu da sua conta. </small>
-                <div className={styles.switchDiv} onClick={handleSwitch}>
-                    <Switch/>
+                <div className={styles.switchDiv}>
+                    <Switch 
+                        setIsIncome={setIsIncome} 
+                        setTitlePlaceholder={setTitlePlaceholder} 
+                        isIncome={isIncome}/>
                 </div>
                 {/* <label className={styles.label}>Categoria da transação</label>
                 <select className={styles.inputText}>
@@ -54,15 +48,15 @@ function NewTransactionForm() {
                     onChange={(e) => {setTitle(e.target.value)}}
                     value={title}
                 />
-                <label htmlFor='value' className={styles.label}>Valor</label>
+                <label htmlFor='amount' className={styles.label}>Valor</label>
                 <input 
-                    id='value'
-                    name='value'
+                    id='amount'
+                    name='amount'
                     className={styles.inputText} 
                     type="number" 
                     placeholder="0.00"
-                    onChange={(e) => {setValue(e.target.value)}}
-                    value={value}    
+                    onChange={(e) => {setAmount(e.target.value)}}
+                    value={amount}    
                 />
                 <label htmlFor='date' className={styles.label}>Data da transação</label>
                 <input 
