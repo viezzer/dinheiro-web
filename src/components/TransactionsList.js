@@ -2,6 +2,7 @@ import styles from './TransactionsList.module.css'
 import * as Dialog from '@radix-ui/react-dialog';
 import NewTransactionForm from './NewTransactionForm';
 import {useState} from 'react'
+import { FaCirclePlus } from "react-icons/fa6";
 
 const transactionsExample = [
     {
@@ -31,14 +32,16 @@ function TransactionsList() {
     const [transactions, setTransactions] = useState(transactionsExample);
 
     function handleDeleteTransaction(ID) {
-        console.log(ID)
-        setTransactions(
-            transactions.filter(function(transaction){
-                if (transaction.id !== ID) {
-                    return transaction
-                }
-                return false
-        }))
+        const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
+        if(shouldDelete){
+            setTransactions(
+                transactions.filter(function(transaction){
+                    if (transaction.id !== ID) {
+                        return transaction
+                    }
+                    return false
+            }))
+        }
     }
 
     function addTransactionIntoDOM(transaction) {
@@ -61,7 +64,9 @@ function TransactionsList() {
             <div className={styles.header}>
                 <p className={styles.headerTitle}>Transações</p>
                 <Dialog.Root>
-                    <Dialog.Trigger className={styles.newTransactionButton}>Nova Transação</Dialog.Trigger>
+                    <Dialog.Trigger className={styles.newTransactionButton}>
+                        <FaCirclePlus/> <p style={{marginLeft: '5px'}}>Nova Transação</p>
+                    </Dialog.Trigger>
                     <Dialog.Portal>
                         <Dialog.Overlay className={styles.dialogOverlay}/>
                         <Dialog.Content className={styles.dialog}>
