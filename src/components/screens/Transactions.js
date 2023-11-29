@@ -32,10 +32,20 @@ const transactionsExample = [
 ]
 
 function Transactions() {
-    const [transactions, setTransactions] = useState(transactionsExample)
+    const [transactions, setTransactions] = useState([])
     const [balance, setBalance] = useState(0)
     const [income, setIncome] = useState(0)
     const [expense, setExpense] = useState(0)
+
+    function fetchTransactions() {
+        fetch("http://localhost:5000/transactions",{
+            method: "GET",
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(response => response.json())
+        .then(data => setTransactions(data.reverse()))
+        .catch(err => console.log(err))
+    }
 
     function updateBalanceValue() {
         const transactionsAmounts = transactions.map(function(transaction) {
@@ -50,7 +60,7 @@ function Transactions() {
 
         const income = transactionsAmounts
             .filter(function(value) {
-                if (value > 0) {return value}
+                return value > 0
             })
             .reduce(function(accumulator, value) {
                 return accumulator + value
@@ -59,7 +69,7 @@ function Transactions() {
 
         const expense = Math.abs(transactionsAmounts
             .filter(function(value){
-                if (value < 0) {return value}
+                return value < 0 
             })
             .reduce(function(accumulator, value){
                 return accumulator + value
@@ -72,8 +82,14 @@ function Transactions() {
     };
 
     useEffect(() => {
+        fetchTransactions();
+    }, []);
+
+    useEffect(() => {
         updateBalanceValue();
     }, [transactions]);
+
+    
 
     return (
         <div className={styles.container}>
