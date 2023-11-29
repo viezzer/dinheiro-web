@@ -7,30 +7,6 @@ import NewTransactionForm from '../NewTransactionForm';
 import { FaCirclePlus } from "react-icons/fa6";
 import styles from './Transactions.module.css'
 
-const transactionsExample = [
-    {
-        id: '1234', 
-        category: 'Transação', 
-        title: 'Almoço muito gostoso que comi no ju com meu pai que fez churrasco',
-        amount: '-23.00',
-        date: '29/11/2023',
-    },
-    {
-        id: '12345',
-        category: 'Transação',
-        title: 'Salário',
-        amount: '300.00',
-        date: '25/11/2023',
-    },
-    {
-        id: '123456',
-        category: 'Transação',
-        title: 'Salário',
-        amount: '300000.00',
-        date: '25/11/2023',
-    },
-]
-
 function Transactions() {
     const [transactions, setTransactions] = useState([])
     const [balance, setBalance] = useState(0)
@@ -83,13 +59,12 @@ function Transactions() {
 
     useEffect(() => {
         fetchTransactions();
-    }, []);
+    },[]);
 
     useEffect(() => {
         updateBalanceValue();
     }, [transactions]);
 
-    
 
     return (
         <div className={styles.container}>
