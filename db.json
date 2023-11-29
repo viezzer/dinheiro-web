@@ -97,6 +97,13 @@
       "title": "teste",
       "amount": "1",
       "date": "2023-11-29"
+    },
+    {
+      "id": "30048992-a004-47ed-92a9-d0b56fe09319",
+      "categorie": "",
+      "title": "teste",
+      "amount": "1",
+      "date": "2023-11-29"
     }
   ],
   "expense_categories": [

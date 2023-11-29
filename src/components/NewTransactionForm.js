@@ -1,26 +1,58 @@
 import {useState} from 'react'
 import Switch from './SwitchDemo';
 import styles from './NewTransactionForm.module.css';
+import { v4 as uuidv4 } from 'uuid';
+
+const currentDate = new Date().toISOString().split('T')[0];
 
 function NewTransactionForm() {
     const [isIncome, setIsIncome] = useState(true) 
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState(currentDate)
     const [titlePlaceholder, setTitlePlaceholder] = useState('Salário, Serviço Prestado, etc...')
 
-    function handleCreateNewTransaction(e) {
+    function formValidate() {
+        if(title.trim() < 3) {
+            alert("Nome da transação deve conter no mínimo 3 caracteres.")
+            return false
+        } else {
+            if(amount <= 0) {
+                alert("Valor da transação inválido.")
+                return false
+            } else {
+                return true
+            }
+        }
+    }
+
+    function createTransaction(e) {
         e.preventDefault()
-        console.log(isIncome)
-        console.log(title)
-        console.log(amount)
-        console.log(date)
+        if(formValidate()) {
+            const newTransaction = {}
+            newTransaction.id = uuidv4()
+            newTransaction.categorie = ""
+            newTransaction.title = title
+            newTransaction.amount = isIncome ? amount : -amount
+            newTransaction.date = date
+
+            fetch("http://localhost:5000/transactions",{
+                method:"POST",
+                headers:{'Content-Type': 'application/json'},
+                body: JSON.stringify(newTransaction)
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error))
+
+        }
+
     }
 
     return (
         <>
             <h2>Nova transação</h2>
-            <form className={styles.form} onSubmit={handleCreateNewTransaction}>
+            <form className={styles.form} onSubmit={createTransaction}>
                 <label className={styles.label}>Tipo da transação</label>
                 <small>Receita para valor que entrou na sua conta. Despesa para valor que saiu da sua conta. </small>
                 <div className={styles.switchDiv}>
@@ -29,14 +61,6 @@ function NewTransactionForm() {
                         setTitlePlaceholder={setTitlePlaceholder} 
                         isIncome={isIncome}/>
                 </div>
-                {/* <label className={styles.label}>Categoria da transação</label>
-                <select className={styles.inputText}>
-                    <option value="">Transação</option>
-                    <option value="opcao1">Alimentação</option>
-                    <option value="opcao2">Transporte</option>
-                    <option value="opcao3">Lazer</option>
-                </select> */}
-
                 
                 <label htmlFor='title' className={styles.label}>Nome</label>
                 <input 
@@ -45,7 +69,7 @@ function NewTransactionForm() {
                     className={styles.inputText} 
                     type="text" 
                     placeholder={titlePlaceholder}
-                    onChange={(e) => {setTitle(e.target.value)}}
+                    onChange={(e) => setTitle(e.target.value)}
                     value={title}
                 />
                 <label htmlFor='amount' className={styles.label}>Valor</label>
@@ -55,7 +79,7 @@ function NewTransactionForm() {
                     className={styles.inputText} 
                     type="number" 
                     placeholder="0.00"
-                    onChange={(e) => {setAmount(e.target.value)}}
+                    onChange={(e) => setAmount(e.target.value)}
                     value={amount}    
                 />
                 <label htmlFor='date' className={styles.label}>Data da transação</label>
@@ -64,7 +88,7 @@ function NewTransactionForm() {
                     name='date'
                     className={styles.inputText}
                     type='date'
-                    onChange={(e) => {setDate(e.target.value)}}
+                    onChange={(e) => setDate(e.target.value)}
                     value={date}
                 />
 

@@ -5,7 +5,9 @@ import {useState, useEffect} from 'react'
 import * as Dialog from '@radix-ui/react-dialog';
 import NewTransactionForm from '../NewTransactionForm';
 import { FaCirclePlus } from "react-icons/fa6";
-import styles from './Transactions.module.css'
+import styles from './Transactions.module.css';
+
+
 
 function Transactions() {
     const [transactions, setTransactions] = useState([])
@@ -56,6 +58,8 @@ function Transactions() {
         setIncome(income)
         setExpense(expense)
     };
+
+    
 
     useEffect(() => {
         fetchTransactions();
