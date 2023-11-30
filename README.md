@@ -13,13 +13,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm run backend`
-
-Before running make shure to rename 'db.json.example' file located in the root directory to 'db.json'!!!
-
-'npm run backend' Runs the json-server API for storing and retrieving data.\
-Open [http://localhost:5000/transactions](http://localhost:5000/transactions) to view the transactions data in your browser.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
