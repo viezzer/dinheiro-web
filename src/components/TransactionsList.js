@@ -32,6 +32,12 @@ function TransactionsList({transactions, setTransactions}) {
         return amountText
     };
 
+    function formatDate(transaction) {
+        const [year,month,day] = transaction.date.split("-");
+        const formatedDate = `${day}/${month}/${year}` 
+        return <p className={styles.data}>{formatedDate}</p>
+    }
+
     return (
         <div className={styles.container}>
             {transactions ? (transactions.map((transaction, index) => (
@@ -40,7 +46,7 @@ function TransactionsList({transactions, setTransactions}) {
                             <p className={styles.title}>{transaction.title}</p>
                         </div>
                         <div className={styles.dateAndAmountDiv}>
-                            <p className={styles.data}>{transaction.date}</p>
+                            {formatDate(transaction)}
                             {addTransactionIntoDOM(transaction)}
                         </div>
                         
