@@ -20,8 +20,8 @@ function Transactions() {
     }
     
 
-    function handleDeleteTransaction(ID) {
-        const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
+    function handleDeleteTransaction(ID, title) {
+        const shouldDelete = window.confirm(`Tem certeza de que deseja excluir "${title}"`);
         if(shouldDelete){
             const storedTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
             const storedTransactionsWithoutDeletedOne = storedTransactions.filter(function(transaction){
@@ -90,7 +90,6 @@ function Transactions() {
             <div className={styles.header}>
                 <p className={styles.headerTitle}>Transações</p>
                 <NewTransactionButton reloadFatherCallback={fetchTransactions}/>
-                
             </div>
             <TransactionsList transactions={transactions} handleDelete={handleDeleteTransaction} />
         </div>

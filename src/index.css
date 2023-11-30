@@ -10,7 +10,10 @@
     margin:0px;
     box-sizing: border-box;
 }
-body {
+
+html, body {
     font-family: Inter;
     background-color: var(--backgroundColor);
+    height:100%;
+    margin:0;
 }
