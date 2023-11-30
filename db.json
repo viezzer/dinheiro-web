@@ -104,6 +104,20 @@
       "title": "teste",
       "amount": "1",
       "date": "2023-11-29"
+    },
+    {
+      "id": "ee90bb1d-e9c5-4760-b225-0a8922603461",
+      "categorie": "",
+      "title": "Corte de cabelo",
+      "amount": -75,
+      "date": "2023-11-29"
+    },
+    {
+      "id": "2d65bb3d-df50-416a-954f-9fb7e940e987",
+      "categorie": "",
+      "title": "Corte de cabelo",
+      "amount": -75,
+      "date": "2023-11-29"
     }
   ],
   "expense_categories": [
