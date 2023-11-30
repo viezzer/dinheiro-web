@@ -15,9 +15,9 @@ You may also see any lint errors in the console.
 
 ### `npm run backend`
 
-Before running make shure to rename 'db.json.example' to 'db.json'!!!
+Before running make shure to rename 'db.json.example' file located in the root directory to 'db.json'!!!
 
-Runs the json-server API for storing and retrieving data.\
+'npm run backend' Runs the json-server API for storing and retrieving data.\
 Open [http://localhost:5000/transactions](http://localhost:5000/transactions) to view the transactions data in your browser.
 
 ### `npm test`
