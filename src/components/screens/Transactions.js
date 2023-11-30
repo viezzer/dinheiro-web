@@ -1,10 +1,8 @@
 import CurrentBalance from '../CurrentBalance.js'
 import IncomeAndExpensesRectangle from '../IncomeAndExpensesRectangle.js'
 import TransactionsList from '../TransactionsList.js'
+import NewTransactionButton from '../NewTransactionButton.js'
 import {useState, useEffect} from 'react'
-import * as Dialog from '@radix-ui/react-dialog';
-import NewTransactionForm from '../NewTransactionForm';
-import { FaCirclePlus } from "react-icons/fa6";
 import styles from './Transactions.module.css';
 
 function Transactions() {
@@ -91,17 +89,7 @@ function Transactions() {
 
             <div className={styles.header}>
                 <p className={styles.headerTitle}>Transações</p>
-                <Dialog.Root>
-                    <Dialog.Trigger className={styles.newTransactionButton}>
-                        <FaCirclePlus/> <p style={{marginLeft: '5px'}}>Nova Transação</p>
-                    </Dialog.Trigger>
-                    <Dialog.Portal>
-                        <Dialog.Overlay className={styles.dialogOverlay}/>
-                        <Dialog.Content className={styles.dialog}>
-                            <NewTransactionForm reloadTransactionsFromChildreen={fetchTransactions}/>
-                        </Dialog.Content>
-                    </Dialog.Portal>
-                </Dialog.Root>
+                <NewTransactionButton reloadFatherCallback={fetchTransactions}/>
                 
             </div>
             <TransactionsList transactions={transactions} handleDelete={handleDeleteTransaction} />

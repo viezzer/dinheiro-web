@@ -1,0 +1,48 @@
+.newTransactionButton{
+    border-radius: 10px;
+    border: 1px solid var(--incomeColor);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: var(--incomeColor);
+    background-color: transparent;
+    font-weight: 700;
+    transition: background-color 0.2s;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.newTransactionButton:hover {
+    border-color: var(--incomeColor);
+    color: white;
+    background-color: var(--incomeColor);
+    cursor:pointer;
+
+}
+
+.dialogOverlay {
+    width: 100vw; /* Equivalente a w-screen no Tailwind */
+    height: 100vh; /* Equivalente a h-screen no Tailwind */
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com opacidade 80%, equivalente a bg-black/80 no Tailwind */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+}
+
+.dialog {
+    position: absolute;
+    padding: 2.5rem; /* Equivalente a p-10 no Tailwind */
+    background-color: var(--cardColor); /* Cor correspondente a bg-zinc-900 no Tailwind */
+    border-radius: 1rem; /* Equivalente a rounded-2xl no Tailwind */
+    width: 100%;
+    max-width: 28rem; /* Equivalente a max-w-md no Tailwind */
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+}
