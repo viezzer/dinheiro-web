@@ -1,9 +1,10 @@
 .container {
-    width: 537px;
+    width: 570px;
     margin-left:auto;
     margin-right:auto;
     margin-top:20px;
-    height: 400px;
+    height: 320px;
+    overflow:auto;
 }
 
 .listItemRectangle {
@@ -14,7 +15,8 @@
     flex-direction: row;
     border-radius: 10px;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    cursor:pointer;
 }
 
 .listItemRectangle:hover .deleteBtn {

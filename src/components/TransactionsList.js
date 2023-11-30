@@ -21,7 +21,7 @@ function TransactionsList({transactions, handleDelete}) {
     return (
         <div className={styles.container}>
             {transactions ? (transactions.map((transaction, index) => (
-                    <div className={styles.listItemRectangle} key={index}>
+                    <div className={styles.listItemRectangle} key={index} onClick={() => {handleDelete(transaction.id)}}>
                         <div className={styles.titleDiv}>
                             <p className={styles.title}>{transaction.title}</p>
                         </div>
@@ -29,9 +29,6 @@ function TransactionsList({transactions, handleDelete}) {
                             {formatDate(transaction)}
                             <p>
                                 {formatAmount(transaction)}
-                                <button className={styles.deleteBtn} onClick={() => {handleDelete(transaction.id)}}>
-                                    x
-                                </button>
                             </p>
                         </div>
                         
