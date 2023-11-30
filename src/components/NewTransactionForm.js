@@ -1,11 +1,11 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Switch from './SwitchDemo';
 import styles from './NewTransactionForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
 const currentDate = new Date().toISOString().split('T')[0];
 
-function NewTransactionForm() {
+function NewTransactionForm({reloadTransactionsFromChildreen}) {
     const [isIncome, setIsIncome] = useState(true) 
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
@@ -29,12 +29,13 @@ function NewTransactionForm() {
     function createTransaction(e) {
         e.preventDefault()
         if(formValidate()) {
-            const newTransaction = {}
-            newTransaction.id = uuidv4()
-            newTransaction.categorie = ""
-            newTransaction.title = title
-            newTransaction.amount = isIncome ? amount : -amount
-            newTransaction.date = date
+            const newTransaction = {
+                "id": uuidv4(),
+                "categorie": "",
+                "title": title,
+                "amount": isIncome ? amount : -amount,
+                "date": date
+            }
 
             fetch("http://localhost:5000/transactions",{
                 method:"POST",
@@ -42,8 +43,12 @@ function NewTransactionForm() {
                 body: JSON.stringify(newTransaction)
             })
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {console.log(data)})
             .catch((error) => console.log(error))
+
+            setTitle("")
+            setAmount("")
+            reloadTransactionsFromChildreen()
 
         }
 

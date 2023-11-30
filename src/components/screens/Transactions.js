@@ -107,13 +107,13 @@ function Transactions() {
                     <Dialog.Portal>
                         <Dialog.Overlay className={styles.dialogOverlay}/>
                         <Dialog.Content className={styles.dialog}>
-                            <NewTransactionForm/>
+                            <NewTransactionForm reloadTransactionsFromChildreen={fetchTransactions}/>
                         </Dialog.Content>
                     </Dialog.Portal>
                 </Dialog.Root>
                 
             </div>
-            <TransactionsList transactions={transactions} handleDelete={handleDeleteTransaction}/>
+            <TransactionsList transactions={transactions} handleDelete={handleDeleteTransaction} />
         </div>
     )
 }
