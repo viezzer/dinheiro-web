@@ -28,14 +28,23 @@ function Transactions() {
     function handleDeleteTransaction(ID) {
         const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
         if(shouldDelete){
-            setTransactions(
-                transactions.filter(function(transaction){
-                    if (transaction.id !== ID) {
-                        return transaction
-                    }
-                    return false
-            }))
-            return true
+
+            fetch(`http://localhost:5000/transactions/${ID}`,{
+                method: "DELETE",
+                headers: {"Content-Type": "application/json"}
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setTransactions(
+                    transactions.filter(function(transaction){
+                        if (transaction.id !== ID) {
+                            return transaction
+                        }
+                        return false
+                }))
+            })
+            .catch(err => console.log(err))
         }
     }
 
