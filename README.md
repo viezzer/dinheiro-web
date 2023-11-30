@@ -1,7 +1,6 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -13,6 +12,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `npm run backend`
+
+Before running make shure to rename 'db.json.example' to 'db.json'!!!
+
+Runs the json-server API for storing and retrieving data.\
+Open [http://localhost:5000/transactions](http://localhost:5000/transactions) to view the transactions data in your browser.
 
 ### `npm test`
 
