@@ -1,6 +1,5 @@
 import styles from './TransactionsList.module.css'
 
-
 function TransactionsList({transactions, handleDelete}) {
 
     

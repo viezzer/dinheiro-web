@@ -7,7 +7,7 @@ import NewTransactionForm from '../NewTransactionForm';
 import { FaCirclePlus } from "react-icons/fa6";
 import styles from './Transactions.module.css';
 
-
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function Transactions() {
     const [transactions, setTransactions] = useState([])
@@ -16,7 +16,7 @@ function Transactions() {
     const [expense, setExpense] = useState(0)
 
     function fetchTransactions() {
-        fetch("http://localhost:5000/transactions",{
+        fetch(`${apiUrl}/transactions`,{
             method: "GET",
             headers: {"Content-Type": "application/json"}
         })
@@ -29,13 +29,13 @@ function Transactions() {
         const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
         if(shouldDelete){
 
-            fetch(`http://localhost:5000/transactions/${ID}`,{
+            fetch(`${apiUrl}/transactions/${ID}`,{
                 method: "DELETE",
                 headers: {"Content-Type": "application/json"}
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setTransactions(
                     transactions.filter(function(transaction){
                         if (transaction.id !== ID) {

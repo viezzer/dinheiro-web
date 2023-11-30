@@ -4,6 +4,7 @@ import styles from './NewTransactionForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
 const currentDate = new Date().toISOString().split('T')[0];
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function NewTransactionForm({reloadTransactionsFromChildreen}) {
     const [isIncome, setIsIncome] = useState(true) 
@@ -37,7 +38,7 @@ function NewTransactionForm({reloadTransactionsFromChildreen}) {
                 "date": date
             }
 
-            fetch("http://localhost:5000/transactions",{
+            fetch(`${apiUrl}/transactions`,{
                 method:"POST",
                 headers:{'Content-Type': 'application/json'},
                 body: JSON.stringify(newTransaction)
