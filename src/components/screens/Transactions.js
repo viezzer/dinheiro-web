@@ -25,6 +25,20 @@ function Transactions() {
         .catch(err => console.log(err))
     }
 
+    function handleDeleteTransaction(ID) {
+        const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
+        if(shouldDelete){
+            setTransactions(
+                transactions.filter(function(transaction){
+                    if (transaction.id !== ID) {
+                        return transaction
+                    }
+                    return false
+            }))
+            return true
+        }
+    }
+
     function updateBalanceValue() {
         const transactionsAmounts = transactions.map(function(transaction) {
             return parseFloat(transaction.amount)
@@ -90,7 +104,7 @@ function Transactions() {
                 </Dialog.Root>
                 
             </div>
-            <TransactionsList transactions={transactions} setTransactions={setTransactions}/>
+            <TransactionsList transactions={transactions} handleDelete={handleDeleteTransaction}/>
         </div>
     )
 }

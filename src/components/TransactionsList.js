@@ -1,35 +1,16 @@
 import styles from './TransactionsList.module.css'
 
 
-function TransactionsList({transactions, setTransactions}) {
+function TransactionsList({transactions, handleDelete}) {
 
-    function handleDeleteTransaction(ID) {
-        const shouldDelete = window.confirm('Tem certeza de que deseja excluir esta transação?');
-        if(shouldDelete){
-            setTransactions(
-                transactions.filter(function(transaction){
-                    if (transaction.id !== ID) {
-                        return transaction
-                    }
-                    return false
-            }))
-            return true
-        }
-    }
+    
 
-    function addTransactionIntoDOM(transaction) {
+    function formatAmount(transaction) {
         const operator = transaction.amount < 0 ? "-" : "+"
         const CSSclass = transaction.amount < 0 ? styles.minus : styles.plus
         const amountWithoutOperator = Math.abs(transaction.amount).toFixed(2)
     
-        const amountText = <p>
-            <span className={CSSclass}>{operator} R$ {amountWithoutOperator}</span>
-            <button className={styles.deleteBtn} onClick={() => {handleDeleteTransaction(transaction.id)}}>
-                x
-            </button>
-            </p>
-    
-        return amountText
+        return <span className={CSSclass}>{operator} R$ {amountWithoutOperator}</span>
     };
 
     function formatDate(transaction) {
@@ -47,7 +28,12 @@ function TransactionsList({transactions, setTransactions}) {
                         </div>
                         <div className={styles.dateAndAmountDiv}>
                             {formatDate(transaction)}
-                            {addTransactionIntoDOM(transaction)}
+                            <p>
+                                {formatAmount(transaction)}
+                                <button className={styles.deleteBtn} onClick={() => {handleDelete(transaction.id)}}>
+                                    x
+                                </button>
+                            </p>
                         </div>
                         
                     </div>
