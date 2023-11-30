@@ -4,7 +4,6 @@ import styles from './NewTransactionForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
 const currentDate = new Date().toISOString().split('T')[0];
-const apiUrl = process.env.REACT_APP_API_URL;
 
 function NewTransactionForm({reloadTransactionsFromChildreen}) {
     const [isIncome, setIsIncome] = useState(true) 
@@ -28,32 +27,32 @@ function NewTransactionForm({reloadTransactionsFromChildreen}) {
     }
 
     function createTransaction(e) {
-        e.preventDefault()
-        if(formValidate()) {
+        e.preventDefault();
+    
+        if (formValidate()) {
             const newTransaction = {
                 "id": uuidv4(),
                 "categorie": "",
                 "title": title,
                 "amount": isIncome ? amount : -amount,
                 "date": date
-            }
-
-            fetch(`${apiUrl}/transactions`,{
-                method:"POST",
-                headers:{'Content-Type': 'application/json'},
-                body: JSON.stringify(newTransaction)
-            })
-            .then((response) => response.json())
-            .then((data) => {console.log(data)})
-            .catch((error) => console.log(error))
-
-            setTitle("")
-            setAmount("")
-            reloadTransactionsFromChildreen()
-
+            };
+    
+            // Get existing transactions from local storage or initialize an empty array
+            const existingTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    
+            // Add the new transaction to the array
+            existingTransactions.push(newTransaction);
+    
+            // Save the updated transactions array back to local storage
+            localStorage.setItem('transactions', JSON.stringify(existingTransactions));
+    
+            setTitle("");
+            setAmount("");
+            reloadTransactionsFromChildreen();
         }
-
     }
+    
 
     return (
         <>
